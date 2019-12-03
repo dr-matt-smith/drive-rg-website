@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Member index{% endblock %}
+
+{% block body %}
+    <h1>Member index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Qualifications</th>
+                <th>Position</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Website</th>
+                <th>Research Students</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for member in members %}
+            <tr>
+                <td>{{ member.id }}</td>
+                <td>{{ member.name }}</td>
+                <td>{{ member.qualifications }}</td>
+                <td>{{ member.position }}</td>
+                <td>{{ member.email }}</td>
+                <td>{{ member.phone }}</td>
+                <td>{{ member.website }}</td>
+                <td>
+                    {% if(member.students) %}
+                        <ul>
+                            {% for student in member.students %}
+                            <a href="{{ path('member_show', {'id': student.id}) }}">
+                                <li>{{ student }}
+                            </a>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                </td>
+                <td>
+                    <a href="{{ path('member_show', {'id': member.id}) }}">show</a>
+                    <a href="{{ path('member_edit', {'id': member.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('member_new') }}">Create new</a>
+{% endblock %}

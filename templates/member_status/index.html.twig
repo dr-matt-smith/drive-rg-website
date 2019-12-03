@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MemberStatus index{% endblock %}
+
+{% block body %}
+    <h1>MemberStatus index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for member_status in member_statuses %}
+            <tr>
+                <td>{{ member_status.id }}</td>
+                <td>{{ member_status.status }}</td>
+                <td>
+                    <a href="{{ path('member_status_show', {'id': member_status.id}) }}">show</a>
+                    <a href="{{ path('member_status_edit', {'id': member_status.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('member_status_new') }}">Create new</a>
+{% endblock %}

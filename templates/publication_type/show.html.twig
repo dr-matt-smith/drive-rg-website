@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PublicationType{% endblock %}
+
+{% block body %}
+    <h1>PublicationType</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ publication_type.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ publication_type.type }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('publication_type_index') }}">back to list</a>
+
+    <a href="{{ path('publication_type_edit', {'id': publication_type.id}) }}">edit</a>
+
+    {{ include('publication_type/_delete_form.html.twig') }}
+{% endblock %}
